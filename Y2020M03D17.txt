@@ -118,3 +118,102 @@ void B15947 (){
   else if(N%14==9)std::cout<<"in";
   else if(N%14==10)std::cout<<"bed";
 }
+void B2446(){
+  int N;
+  std::cin >> N;
+  for(int i=0;i<N;i++)
+  {
+    for(int k=0;k<i;k++)
+    {
+      std::cout<<" ";
+    }
+    for(int j=(2*N-1)-i*2;j>0;j--)
+    {
+      std::cout << "*";
+    }
+    std::cout<<"\n";
+  }
+  for(int l=0;l<N;l++){
+    if(l!=0)
+    for(int z=N-l;z>1;z--)
+    {
+      std::cout << " ";
+    }
+    if(l!=0)
+    for(int m=0;m<(l*2)+1;m++)
+    {
+      std::cout << "*";
+    }
+    if(l!=0)
+    std::cout << "\n";
+  }
+}
+void B2523(){
+  int N;
+  std::cin >> N;
+  for(int i=0;i<N;i++)
+  {
+    for(int j=0;j<i+1;j++)
+    {
+      std::cout << "*";
+    }
+    std::cout << "\n";
+  }
+  for(int k=1;k<N;k++)
+  {
+    for(int l=0;l<N-k;l++)
+    {
+      std::cout << "*";
+    }
+    std::cout << "\n";
+  }
+}
+void B10990(){
+  int a;
+  std::cin >> a;
+  a=a*2-1;
+    int m=-1;
+    for(int k=0;k<a/2+1;k++)
+    {
+      for(int j=a/2;j>k;j--)
+      {
+        std::cout<<" ";
+      }
+      std::cout <<"*";
+      for(int l=0;l<m;l++)
+      {
+        std::cout<<" ";
+      }
+      if(k!=0)std::cout<<"*";
+      std::cout<<"\n";
+        m+=2;
+    }
+}
+void B10992(){
+  int a;
+  std::cin >> a;
+  a=a*2-1;
+    int m=-1;
+    for(int k=0;k<a/2+1;k++)
+    {
+      if(k==a/2)
+      {
+        for(int B2=0;B2<a;B2++)
+        std::cout<<"*";
+      }
+      else{
+      for(int j=a/2;j>k;j--)
+      {
+        std::cout<<" ";
+      }
+      std::cout <<"*";
+      for(int l=0;l<m;l++)
+      {
+        std::cout<<" ";
+      }
+      if(k!=0)std::cout<<"*";
+      std::cout<<"\n";
+        m+=2;
+    }
+    }
+}
