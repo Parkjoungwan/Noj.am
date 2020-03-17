@@ -1,53 +1,35 @@
 #include <iostream>
 #include <string>
-
-void B5337 (){
-  std::cout << ".  .   .\n";
-  std::cout << "|  | _ | _. _ ._ _  _\n";
-  std::cout << "|/\\|(/.|(_.(_)[ | )(/.\n";
-}
-
-void B10926 (){
-  std::string a;
-  std::cin >> a;
-  std::cout << a;
-  std::cout << "??!";
-}
-
-void B16561(){
+void B14624(){
   int a;
   std::cin >> a;
-  int b;
-  int d=1;
-  b=(a-6)/3;
-  for(int c=2;c<=b;c++){
-    if(a==9) d=1;
-    else d=d+c;
-  }
-  std::cout<<d;
-}
-void B15680(){
-  int n;
-  std::cin >> n;
-  if(n==0)
+  if(a%2==0)
   {
-    std::cout << "YONSEI";
+    std::cout << "I LOVE CBNU";
   }
-  else std:: cout << "Leading the Way to the Future";
+  else 
+  {
+    for(int i=0;i<a;i++)
+    std::cout<<"*";
+    std::cout<<"\n";
+    int m=-1;
+    for(int k=0;k<a/2+1;k++)
+    {
+      for(int j=a/2;j>k;j--)
+      {
+        std::cout<<" ";
+      }
+      std::cout <<"*";
+      for(int l=0;l<m;l++)
+      {
+        std::cout<<" ";
+      }
+      if(k!=0)std::cout<<"*";
+      std::cout<<"\n";
+        m+=2;
+    }
+  }
 }
-
-void B16394(){
-  int a;
-  std::cin >> a;
-  std:: cout << a-1946;
-  
-}
-
 int main() {
-  //2020년 3월 17일
-  //B5337();
-  //B10926();
-  //B16561();
-  //B15680();
-  B16394();
+  B14624();  
 }
