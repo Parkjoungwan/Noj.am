@@ -3,6 +3,7 @@
 #include <algorithm>
 using namespace std;
 int main() {
+<<<<<<< HEAD
   int N;
   cin >> N;
   int *maze=new int[N];
@@ -30,3 +31,8 @@ int main() {
   cout << count << endl;
   return 0;
 }
+=======
+ std::cout<<"helloworld! you finally did it!"<<endl;
+}
+
+>>>>>>> origin/master
