@@ -33,6 +33,7 @@ void B10996(){
     }
   }
 }
+
 void B5597(){
   int a[31]={0,};
   for(int i=0;i<28;i++)
@@ -56,3 +57,93 @@ void B10872(){
   }
   cout << re;
 }
+
+
+int Arr[5];
+bool Select[5];
+void Print(){
+  for(int i=0;i<5;i++)
+  {
+    if(Select[i]==true)
+    {
+      cout<<Arr[i]<<" ";
+    }
+  }
+  cout << endl;
+}
+void DFS(int Idx, int Cnt)
+{
+  if (Cnt == 3)
+  {
+    Print();
+    return;
+  }
+  for(int i= Idx; i<5;i++)
+  {
+    if(Select[i]==true) continue;
+    Select[i] =true;
+    
+    DFS(i, Cnt+1);
+    Select[i] = false;
+  }
+}
+
+
+int main() {
+  for(int i=0;i<5;i++)
+  {
+    Arr[i]=i+1;
+  }
+  DFS(0,0);
+}
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+ int N;
+ cin >> N ;
+
+ int *Num = new int[N];
+
+ for(int i=0;i<N;i++){
+   cin >> Num[i];
+ }
+
+ sort(Num,Num+N);
+
+ cout << Num[0]*Num[N-1];
+
+}
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+ int N;
+ cin >> N ;
+ vector<int> Num;
+ for(int i=0;i<N;i++){
+   int AA;
+   cin>>AA;
+   if(AA==0){
+     Num.pop_back();
+   }else{
+     Num.push_back(AA);
+   }
+ }
+ int sum=0;
+ for(int i=0;i<Num.size();i++){
+   sum+=Num[i];
+ }
+ cout<<sum<<endl;
+ return 0;
+}
+
+

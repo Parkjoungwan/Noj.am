@@ -24,6 +24,7 @@ void B16561(){
   }
   std::cout<<d;
 }
+
 void B15680(){
   int n;
   std::cin >> n;
@@ -40,6 +41,7 @@ void B16394(){
   std:: cout << a-1946;
   
 }
+
 void B14624(){
   int a;
   std::cin >> a;
@@ -84,6 +86,7 @@ void B16673(){
   }
   std::cout << N;
 }
+
 void B15947 (){
   int N;
   std::cin >> N;
@@ -118,6 +121,7 @@ void B15947 (){
   else if(N%14==9)std::cout<<"in";
   else if(N%14==10)std::cout<<"bed";
 }
+
 void B2446(){
   int N;
   std::cin >> N;
@@ -148,6 +152,7 @@ void B2446(){
     std::cout << "\n";
   }
 }
+
 void B2523(){
   int N;
   std::cin >> N;
@@ -168,6 +173,7 @@ void B2523(){
     std::cout << "\n";
   }
 }
+
 void B10990(){
   int a;
   std::cin >> a;
@@ -189,6 +195,7 @@ void B10990(){
         m+=2;
     }
 }
+
 void B10992(){
   int a;
   std::cin >> a;
