@@ -1,3 +1,180 @@
+void B10996(){
+  int N;
+  std::cin >> N;
+  if(N==1) std::cout << "*";
+  else{
+    for(int i=0;i<2*N;i++)
+    {
+      if(i%2==1){
+        std::cout << " ";
+        for(int k=0;k<N/2;k++)
+        {
+          std::cout << "*";
+          std::cout << " ";
+        }
+      }
+      else{
+        if(N%2==0){
+          for(int j=0;j<N/2;j++)
+          {
+            std::cout << "*";
+            std::cout << " ";
+          }
+        }
+        else{
+          for(int j=0;j<N/2+1;j++)
+          {
+            std::cout << "*";
+            std::cout << " ";
+          }
+        }
+      }
+      std::cout << "\n";
+    }
+  }
+}
+
+void B5597(){
+  int a[31]={0,};
+  for(int i=0;i<28;i++)
+  {
+    int b;
+    cin>>b;
+    a[b]=1;
+  }
+  for(int j=1;j<=30;j++){
+    if(a[j]==0) 
+    cout<<j<<endl;
+  }
+}
+void B10872(){
+  long A;
+  long re=1;
+  cin >> A;
+  for(int i=1;i<=A;i++)
+  {
+    re=re*i;
+  }
+  cout << re;
+}
+
+
+int Arr[5];
+bool Select[5];
+void Print(){
+  for(int i=0;i<5;i++)
+  {
+    if(Select[i]==true)
+    {
+      cout<<Arr[i]<<" ";
+    }
+  }
+  cout << endl;
+}
+void DFS(int Idx, int Cnt)
+{
+  if (Cnt == 3)
+  {
+    Print();
+    return;
+  }
+  for(int i= Idx; i<5;i++)
+  {
+    if(Select[i]==true) continue;
+    Select[i] =true;
+    
+    DFS(i, Cnt+1);
+    Select[i] = false;
+  }
+}
+
+
+int main() {
+  for(int i=0;i<5;i++)
+  {
+    Arr[i]=i+1;
+  }
+  DFS(0,0);
+}
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+ int N;
+ cin >> N ;
+
+ int *Num = new int[N];
+
+ for(int i=0;i<N;i++){
+   cin >> Num[i];
+ }
+
+ sort(Num,Num+N);
+
+ cout << Num[0]*Num[N-1];
+
+}
+
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+ int N;
+ cin >> N ;
+ vector<int> Num;
+ for(int i=0;i<N;i++){
+   int AA;
+   cin>>AA;
+   if(AA==0){
+     Num.pop_back();
+   }else{
+     Num.push_back(AA);
+   }
+ }
+ int sum=0;
+ for(int i=0;i<Num.size();i++){
+   sum+=Num[i];
+ }
+ cout<<sum<<endl;
+ return 0;
+}
+
+void nojam4949(){
+ int N;
+  cin >> N;
+  int *maze=new int[N];
+  for (int i=0;i<N;i++){
+    cin>>maze[i];
+  }
+  int count=0;
+  int M = N-1;
+  for(;M!=0;){
+    int check = 1;
+    int check2 =0;
+    for(int j=M-1;j>=0;j--){
+      if(maze[j]>=check){
+        M=j;
+        check2= 1;
+      }
+      check++;
+    }
+    if(check2==0){
+        cout << "-1"<<endl;
+        return 0;
+    }
+    count++;
+  }
+  cout << count << endl;
+  return 0;
+}
+
 
 void B5337 (){
   std::cout << ".  .   .\n";
@@ -259,4 +436,34 @@ void B10996(){
       std::cout << "\n";
     }
   }
+}
+
+void nojam4949(){
+   for(;;){
+   stack<char> st;
+   string s;
+   getline(cin,s);
+   if(s=="."){
+     break;
+   }
+   int check = 0;
+   for (int i=0;i<s.size();i++){
+     char c = s[i];
+     if(c=='('||c=='['){
+       st.push(c);
+     }else if(c==')'){
+       if(st.empty()||st.top()!='('){
+         check = 1;
+         break;
+       }else st.pop();
+     }else if(c==']'){
+       if(st.empty()||st.top()!='['){
+         check = 1;
+         break;
+       }else st.pop();
+     }
+   }
+  if(check||!st.empty()) cout<<"no\n";
+  else cout << "yes\n";
+ }
 }

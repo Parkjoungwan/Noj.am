@@ -1,38 +1,58 @@
 #include <iostream>
+#include <stack>
+#include <string>
 #include <vector>
-#include <algorithm>
 using namespace std;
-int main() {
-<<<<<<< HEAD
+
+void nojam10866(){
   int N;
   cin >> N;
-  int *maze=new int[N];
+  vector<int> deck;
   for (int i=0;i<N;i++){
-    cin>>maze[i];
-  }
-  int count=0;
-  int M = N-1;
-  for(;M!=0;){
-    int check = 1;
-    int check2 =0;
-    for(int j=M-1;j>=0;j--){
-      if(maze[j]>=check){
-        M=j;
-        check2= 1;
+    string s;
+    cin >> s;
+    if(s=="push_front"){
+      int X;
+      cin >> X;
+      deck.insert(deck.begin(),X);
+    }else if(s=="push_back"){
+      int X;
+      cin >> X;
+      deck.push_back(X);
+    }else if(s=="pop_front"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else {
+        cout<<deck.front()<<endl;
+        deck.erase(deck.begin());
       }
-      check++;
+    }else if(s=="pop_back"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else {
+        cout<<deck.back()<<endl;
+        deck.pop_back();
+      }
+    }else if(s=="size"){
+      cout<<deck.size()<<endl;
+    }else if(s=="empty"){
+      cout<<deck.empty()<<endl;
+    }else if(s=="front"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else cout<<deck.front()<<endl;
+    }else{
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else cout<<deck.back()<<endl;
     }
-    if(check2==0){
-        cout << "-1"<<endl;
-        return 0;
-    }
-    count++;
   }
-  cout << count << endl;
-  return 0;
-}
-=======
- std::cout<<"helloworld! you finally did it!"<<endl;
+
+
 }
 
->>>>>>> origin/master
+int main() {
+  nojam10866();
+}
+
+
