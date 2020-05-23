@@ -467,3 +467,93 @@ void nojam4949(){
   else cout << "yes\n";
  }
 }
+
+void nojam10866(){
+  int N;
+  cin >> N;
+  vector<int> deck;
+  for (int i=0;i<N;i++){
+    string s;
+    cin >> s;
+    if(s=="push_front"){
+      int X;
+      cin >> X;
+      deck.insert(deck.begin(),X);
+    }else if(s=="push_back"){
+      int X;
+      cin >> X;
+      deck.push_back(X);
+    }else if(s=="pop_front"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else {
+        cout<<deck.front()<<endl;
+        deck.erase(deck.begin());
+      }
+    }else if(s=="pop_back"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else {
+        cout<<deck.back()<<endl;
+        deck.pop_back();
+      }
+    }else if(s=="size"){
+      cout<<deck.size()<<endl;
+    }else if(s=="empty"){
+      cout<<deck.empty()<<endl;
+    }else if(s=="front"){
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else cout<<deck.front()<<endl;
+    }else{
+      if(deck.empty()){
+        cout<<"-1"<<endl;
+      }else cout<<deck.back()<<endl;
+    }
+  }
+
+
+}
+
+int fac(int n){
+  int result=1;
+  for(int i=1;i<=n;i++){
+    result*=i;
+  }
+  return result;
+}
+
+void nojam13908(){
+  int n,m;
+  cin >>n;
+  cin >>m;
+  int* known = new int[m];
+  for (int i=0;i<m;i++){
+    cin >>known[i];
+  }
+  int newn=n;
+  int mul=1;
+  int formul=1;
+  for (int i=0;i<n-m;i++){
+    mul*=newn;
+    newn--;
+    formul*=10;
+  }
+  mul=mul/fac(n-m);
+
+  int full = mul*formul;
+  int overlap = 0;
+  if(n>2) {
+    overlap = mul*(formul/10);
+  }
+  int fulloverlap = mul-1;
+  int result = full-overlap-fulloverlap;
+  if(n==m){
+    result=fac(n);
+  }
+  if(m==0){
+    result=formul;
+  }
+  cout << result << endl;
+
+}
