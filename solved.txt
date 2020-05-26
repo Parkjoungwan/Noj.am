@@ -675,3 +675,13 @@ int main() {
 
   return 0;
 }
+
+void nojam10951(){
+  int N, M;
+  for(;;){
+    cin >> N;
+    cin >> M;
+    if(cin.eof()) break;
+    cout << N+M<<endl;
+  }
+}
