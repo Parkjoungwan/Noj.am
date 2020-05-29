@@ -3,48 +3,31 @@
 #include <vector>
 using namespace std;
 
-void nojam10815(){
-  int N,M;
-  cin >>N;
-  int* sang=new int[N];
-  for(int i=0;i<N;i++){
-    cin >> sang[i];
+void nojam11053(){
+  int N;
+  int Mp[1010];
+  int A[1010];
+  cin >> N;
+  for(int i=1;i<=N;i++){
+    cin >> A[i];
   }
-  sort(sang,sang+N);
-  cin >> M;
-  int* nosang=new int[M];
-  for(int i=0;i<M;i++){
-    cin >> nosang[i];
-  }
-  int target;
-  int check=0;
-  for (int i=0;i<M;i++){
-    target=nosang[i];
-    check=0;
-    int end=N-1,start=0;
-    int mid = (end-start)/2;
-    for(;end-start>=0;){
-      if(sang[mid]==target){
-        nosang[i]=1;
-        check=1;
-        break;
-      }else if(sang[mid]<=target){
-        start=mid+1;
-      }else{
-        end=mid-1;
+  int max=0;
+  for(int i=1;i<=N;i++){
+    int min = 0;
+    for(int j=0;j<i;j++){
+      if(A[i]>A[j]){
+        if(min<Mp[j]) min = Mp[j];
       }
-      mid=(end+start)/2;
     }
-    if(check!=1){
-      nosang[i]=0;
+    Mp[i] = min +1;
+    if(max < Mp[i]){
+      max = Mp[i];
     }
   }
-
-  for(int i=0;i<M;i++){
-    cout << nosang[i]<<" ";
-  }
+  cout << max;
 }
 
+
 int main() {
- nojam10815();
+  nojam11053();
 }
