@@ -2,67 +2,93 @@
 #include <algorithm>
 #include <vector>
 using namespace std;
-#define endl "\n"
-#define MAX 505
-#define INF 1<<30
 
-struct edge{
-  int from;
-  int to;
-  int cost;
-};
-
-int TC;
-int N, M, W;
-long long Dist[MAX];
-vector<edge> Edge;
-int check =0;
-
-void nojam1865(){
-  cin >> TC;
-  for(int i=0;i<TC;i++){
-    cin >> N >> M>> W;
-    Edge.clear();
-    Edge.resize(N+1);
-    check=0;
-    for(int i=0;i<M;i++){
-      edge tmp;
-      cin >> tmp.from >> tmp.to >> tmp.cost;
-      Edge.push_back(tmp);
-      edge tmp2;
-      tmp2.from=tmp.to;
-      tmp2.to=tmp.from;
-      tmp2.cost=tmp.cost;
-      Edge.push_back(tmp2);
+void nojam7576(){
+  int N,M;
+  cin >> M >> N ;
+  int** toma=new int* [N];
+  for (int i=0;i<N;i++){
+    toma[i]=new int[M];
+  }
+  for (int i=0;i<N;i++){
+    for(int j=0;j<M;j++){
+      cin >>toma[i][j];
     }
-    for(int i=0;i<W;i++){
-      edge tmp;
-      cin >> tmp.from >> tmp.to >> tmp.cost;
-      tmp.cost = -tmp.cost;
-      Edge.push_back(tmp);
-    }
-    for(int i=2;i<=N;i++){
-      Dist[i]=INF;
-    }
-    for (int i=1; i<=N; i++){
-      for(int z=1; z<=N; z++){
-        for(int j=0; j<Edge.size(); j++){
-          int From = Edge[j].from;
-          int To = Edge[j].to;
-          int Cost = Edge[j].cost;
-
-          if (Dist[z]!=INF&&Dist[To] > Dist[From] + Cost) {
-            Dist[To] =Dist[From] + Cost;
-            if(i==N)check=1; 
+  }
+  int day=0;
+  int ok;
+  while(ok!=N*M){
+    ok=0;
+    for (int i=0;i<N;i++){
+      for(int j=0;j<M;j++){
+        if (toma[i][j]==1){
+          //가장자리가 아닌 경우
+          if(i>0&&i<N-1&&j>0&&j<M-1){
+            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+            toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+            toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
           }
+          //가장자리(윗줄)인 경우
+          else if(i==0){
+            if(j==0){
+              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+            }else if(j==M-1){
+              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
+            }else{
+              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
+            }
+          }
+          //가장자리(아랫줄)인 경우
+          else if(i==N-1){
+            if(j==0){
+              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+            }else if(j==M-1){
+              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
+            }else{
+              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
+            }
+          }
+          //가장자리(왼쪽줄)인 경우
+          else if(j==0){
+            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+            toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
+          }
+          //가장자리(오른쪽줄)인 경우
+          else if(j==M-1){
+            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
+            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
+            toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
+          }
+          ok++;
         }
       }
-   }
-    if (check) cout << "Yes"<<endl;
-    else cout << "No"<<endl;
+    }
+    day++;
   }
+
+   //입력확인
+  for (int i=0;i<N;i++){
+    for(int j=0;j<M;j++){
+      cout << toma[i][j];
+    }
+    cout << "\n";
+  }
+
+  cout << day <<endl;
+
+
 }
 
 int main() {
-  nojam1865();
+  nojam7576();
 }
