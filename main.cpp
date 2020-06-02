@@ -1,94 +1,54 @@
-#include <iostream>
-#include <algorithm>
-#include <vector>
+#include <bits/stdc++.h> 
 using namespace std;
-
-void nojam7576(){
-  int N,M;
-  cin >> M >> N ;
-  int** toma=new int* [N];
-  for (int i=0;i<N;i++){
-    toma[i]=new int[M];
-  }
-  for (int i=0;i<N;i++){
-    for(int j=0;j<M;j++){
-      cin >>toma[i][j];
+int dx[4] = {0, 0, 1, -1}; 
+int dy[4] = {1, -1, 0, 0};
+int tomato[1001][1001];
+int d[1001][1001]; 
+int n, m; 
+int main() { 
+  scanf("%d %d", &m, &n);
+  queue<pair<int, int> > q; 
+  for (int i = 0; i < n; i++) { 
+    for (int j = 0; j < m; j++) {
+      scanf("%d", &tomato[i][j]); 
+      d[i][j] = -1; 
+      if (tomato[i][j] == 1) {
+        q.push({i, j}); 
+        d[i][j] = 0; 
+        
+      } 
+      
+    } 
+    
+  } while (!q.empty()) {
+    int x = q.front().first;
+    int y = q.front().second; 
+    q.pop(); 
+    for (int i = 0; i < 4; i++) { 
+      int nx = x + dx[i];
+      int ny = y + dy[i];
+      if (0 <= nx && nx < n && 0 <= ny && ny < m) { 
+        if (tomato[nx][ny] == 0 && d[nx][ny] == -1) {
+          // 익지 않은 토마토 이면서 방문하지 않은 곳
+          d[nx][ny] = d[x][y] + 1;
+          q.push({nx, ny});
+          }
+        } 
+      
     }
-  }
-  int day=0;
-  int ok;
-  while(ok!=N*M){
-    ok=0;
-    for (int i=0;i<N;i++){
-      for(int j=0;j<M;j++){
-        if (toma[i][j]==1){
-          //가장자리가 아닌 경우
-          if(i>0&&i<N-1&&j>0&&j<M-1){
-            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-            toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-            toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-          }
-          //가장자리(윗줄)인 경우
-          else if(i==0){
-            if(j==0){
-              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-            }else if(j==M-1){
-              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-            }else{
-              toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-            }
-          }
-          //가장자리(아랫줄)인 경우
-          else if(i==N-1){
-            if(j==0){
-              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-            }else if(j==M-1){
-              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-            }else{
-              toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-              toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-              toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-            }
-          }
-          //가장자리(왼쪽줄)인 경우
-          else if(j==0){
-            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-            toma[i][j+1]=(toma[i][j+1]==-1)?-1:1;
-          }
-          //가장자리(오른쪽줄)인 경우
-          else if(j==M-1){
-            toma[i-1][j]=(toma[i-1][j]==-1)?-1:1;
-            toma[i+1][j]=(toma[i+1][j]==-1)?-1:1;
-            toma[i][j-1]=(toma[i][j-1]==-1)?-1:1;
-          }
-          ok++;
-        }
+  } 
+  int result = 0;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      result = max(result,d[i][j]);
+      } 
+  } 
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      if (tomato[i][j] == 0 && d[i][j] == -1) {
+        result = -1; 
+        } 
       }
-    }
-    day++;
   }
-
-   //입력확인
-  for (int i=0;i<N;i++){
-    for(int j=0;j<M;j++){
-      cout << toma[i][j];
-    }
-    cout << "\n";
-  }
-
-  cout << day <<endl;
-
-
-}
-
-int main() {
-  nojam7576();
+  cout << result;
 }
