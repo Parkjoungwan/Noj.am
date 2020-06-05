@@ -1,65 +1,35 @@
 #include <iostream>
-
 using namespace std;
 
-#define INF 987654321
-#define NIL -1
-#define MAX 101
-
-int graph[MAX][MAX];
-int before[MAX][MAX];
-
-void floyd(int n){
-    for (int mid=1;mid<=n;mid++){
-        for (int start=1;start<=n;start++){
-            for (int end=1;end<=n;end++){
-                if (graph[start][end] > graph[start][mid] + graph[mid][end]){
-                    graph[start][end] = graph[start][mid] + graph[mid][end];
-                    before[start][end] = before[mid][end];
-                    
-                }
-            }
-        }
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+    int T, W, ans=0;
+    int arr[1001];
+    int dp[3][1001][32];
+    cin >> T >> W;
+    for(int i=1; i<=T; i++){
+        cin >> arr[i];
     }
-}
 
-int main(){
-    int n,m;
-    cin >> n >> m;
+    for (int i = 1; i <= T; i++) {
+      for (int j = 1; j <= W + 1; j++) {
+        if (arr[i] == 1) {
+          dp[1][i][j] = max(dp[1][i - 1][j] + 1, dp[2][i - 1][j - 1] + 1);
+          dp[2][i][j] = max(dp[1][i - 1][j - 1], dp[2][i - 1][j]);
+        } else {
+          if (i == 1 && j == 1) {
+            continue;
+          }
+          dp[1][i][j] = max(dp[2][i - 1][j - 1], dp[1][i - 1][j]);
+          dp[2][i][j] = max(dp[1][i - 1][j - 1] + 1, dp[2][i - 1][j] + 1);
+        }
+      }
+    }
+    for (int i = 1; i <= W + 1; i++) {
+      ans = max(ans, max(dp[1][T][i], dp[2][T][i]));
+    }
 
-    for (int i=1;i<=n;i++){
-        for (int j=1;j<=n;j++){
-            graph[i][j] = MAX;
-            if (i==j) graph[i][j] = 0;
-            before[i][j] = NIL;
-        }
-    }
-    
-    for (int i=0;i<m;i++){
-        int node1, node2;
-        cin >> node1 >> node2;
-        graph[node1][node2] = 1;
-        graph[node2][node1] = 1;
-        before[node1][node2] = node1;
-        before[node2][node1] = node2;
-    }
-    
-    floyd(n);
-    
-    
-    int sum=0;
-    int min=MAX;
-    int result;
-    for (int i=1;i<=n;i++){
-        sum=0;
-        for (int j=1;j<=n;j++){
-            sum+=graph[i][j];
-        }
-        if (min>sum){
-          min = sum;
-          result=i;
-        }
-    }
-    cout << result << endl;
-
+    cout << ans;
+    return 0;
 }
