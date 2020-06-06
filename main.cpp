@@ -1,35 +1,67 @@
 #include <iostream>
+#include <cstring>
+#include <queue>
+#define MAX 1001
+
 using namespace std;
 
-int main() {
+int map[MAX][MAX];
+int visited[MAX]; //정점의 개수만큼 visited
+queue<int> q;
+int n,m,v;
+
+void init(){
     ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    int T, W, ans=0;
-    int arr[1001];
-    int dp[3][1001][32];
-    cin >> T >> W;
-    for(int i=1; i<=T; i++){
-        cin >> arr[i];
-    }
+    cin.tie(0); cout.tie(0);
+}
 
-    for (int i = 1; i <= T; i++) {
-      for (int j = 1; j <= W + 1; j++) {
-        if (arr[i] == 1) {
-          dp[1][i][j] = max(dp[1][i - 1][j] + 1, dp[2][i - 1][j - 1] + 1);
-          dp[2][i][j] = max(dp[1][i - 1][j - 1], dp[2][i - 1][j]);
-        } else {
-          if (i == 1 && j == 1) {
-            continue;
-          }
-          dp[1][i][j] = max(dp[2][i - 1][j - 1], dp[1][i - 1][j]);
-          dp[2][i][j] = max(dp[1][i - 1][j - 1] + 1, dp[2][i - 1][j] + 1);
+void dfs(int v){
+    cout << v << " ";
+    visited[v] = 1;
+    for(int i = 1; i <= n; i++){
+        if(map[v][i] && !visited[i]){
+            dfs(i);
         }
-      }
     }
-    for (int i = 1; i <= W + 1; i++) {
-      ans = max(ans, max(dp[1][T][i], dp[2][T][i]));
-    }
+}
 
-    cout << ans;
+void bfs(int v){
+    visited[v] = 1;
+    q.push(v);
+    
+    while(!q.empty()){
+        v = q.front();
+        q.pop();
+        
+        cout << v << " "; //bfs는 pop으로 방문함!! 
+        for(int i = 1; i <= n; i++){
+            if(map[v][i] && !visited[i]){
+                q.push(i);
+                visited[i] = 1;
+            }
+        }
+    }
+}
+
+int main(void){
+    init();
+    cin >> n >> m >> v;
+    memset(map,0,sizeof(map));
+    memset(visited,0,sizeof(visited));
+    
+    for(int i = 0; i < m; i++){
+        int a, b; //간선을 연결, 연결되어있음을 1로 나타냄
+        cin >> a >> b;
+        map[a][b] = 1;
+        map[b][a] = 1;
+    }
+    
+    dfs(v);
+    cout << "\n";
+    //////////////
+    
+    memset(visited,0,sizeof(visited));
+    bfs(v);
+    cout << "\n";
     return 0;
 }
