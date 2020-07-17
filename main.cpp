@@ -17,8 +17,8 @@ void nojam12865(){
 	//input end
 	for(int i=1;i<=N;i++){
 		for(int j=K; j>=1; j--){
-			if(w[i]<=j){
-				d[j]=max(d[j],d[j-w[i]]+v[i]);
+			if(w[i] <= j){
+				d[j] = max(d[j], d[j-w[i]] + v[i]);
 			}
 		}
 	}
