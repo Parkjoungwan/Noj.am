@@ -8,31 +8,25 @@ int dp[12];
 vector <int> ans;
 
 void dpset(int N){
-	for(int i=3;i<N;i++){
+	for(int i=4;i<=N;i++){
 		dp[i]=dp[i-1]+dp[i-2]+dp[i-3];
 	}
-	//input end
-	for(int i=1;i<=N;i++){
-		for(int j=K; j>=1; j--){
-			if(w[i] <= j){
-				d[j] = max(d[j], d[j-w[i]] + v[i]);
-			}
-		}
-=======
 }
 
-void findans(int N,int K){
-	if(N<3) return;
-	if(K<dp[N-1]){
+void findans(int N, int begin, int end){
+	if(N==0) return ;
+	int one = dp[N-1];
+	int two = dp[N-2]+dp[N-1];
+	int three = dp[N];
+	if(N>=1&& (begin<k&&k<=begin+one)){
 		ans.push_back(1);
-		findans(N-1,K);}
-	if(K>dp[N-1]&&K<dp[N-1]+dp[N-2]){
+		findans(N-1,begin, begin+one);
+	}else if(N>=2&&(begin+one<k&&k<=begin+two)){
 		ans.push_back(2);
-		findans(N-2,K-dp[N-1]);
-	}
-	if(K>dp[N-1]+dp[N-2]){
+		findans(N-2,begin+one,begin+two);
+	}else if(N>=3&&(begin+two<k&&k<=begin+three)){
 		ans.push_back(3);
-		findans(N-3,K-dp[N-1]-dp[N-2]);
+		findans(N-3,begin+two,begin+three);
 	}
 }
 void show(vector <int> ANS){
@@ -45,20 +39,20 @@ void show(vector <int> ANS){
 void nojam12101(){
 	cin >> n >> k;
 	dpset(n);
-	cout << "dp reset\n";
-	findans(n,k);
-	cout << "findans\n";
+	if (dp[n]<k) {
+		cout << "-1";
+		return;
+	}
+	int end = dp[n];
+	findans(n,0,end);
 	show(ans);
 }
 
-
-
-
-
 int main() {
-	dp[0]=0;
+	dp[0]=1;
 	dp[1]=1;
 	dp[2]=2;
+	dp[3]=4;
 	nojam12101();
 	return 0;
 }
