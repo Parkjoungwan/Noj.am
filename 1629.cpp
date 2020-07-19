@@ -18,7 +18,7 @@ long long findans(int b){
 
 void nojam1629(){
 	cin >> A >> B >> C;	
-	cout << findans(B)<<"\n";	
+	cout << findans(B)%C<<"\n";	
 
 }
 
