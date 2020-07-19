@@ -34,6 +34,7 @@ void show(vector <int> ANS){
 		cout<<ANS[i];
 		if(i<ANS.size()-1) cout<<"+";
 	}
+	cout<< "\n";
 }
 
 void nojam12101(){
