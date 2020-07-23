@@ -1,15 +1,13 @@
 #include <iostream>
-
 using namespace std;
 
 int N;
 long long dp[10000];
 
 void dpset(){
-
 	for(int i=6;i<=N;i++){
 		if(dp[i]==0){ 
-		dp[i]=dp[i-1]+(dp[i-2]-dp[i-3])+(dp[i-3]-dp[i-4]-dp[i-5]+dp[i-6]);
+		dp[i]=dp[i-1]+(dp[i-2]-dp[i-3])+(dp[i-3]-(dp[i-4]+dp[i-5]-dp[i-6]));
 		}
 	}
 }
