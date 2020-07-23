@@ -3,7 +3,7 @@
 using namespace std;
 
 int N;
-int dp[10000];
+long long dp[10000];
 
 void dpset(){
 
@@ -29,7 +29,7 @@ void nojam15989(){
 
 int main(){
 	dp[0]=1;
-	for(int i=1;i<6;i++){
+	for(long long i=1;i<6;i++){
 		dp[i]=i;
 	}
 	nojam15989();
