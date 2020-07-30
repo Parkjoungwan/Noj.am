@@ -6,7 +6,7 @@ int N,M;
 void nojam2609(){
 	cin >> N >> M;
 	int max=1;
-	for (int i=2;i<10000;i++){
+	for (int i=2;i<10001;i++){
 		if(N%i==0&&M%i==0){
 			N=N/i;
 			M=M/i;
