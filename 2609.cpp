@@ -14,7 +14,6 @@ void gcd(){
 	int two=M;
 	while(1){
 		if(one%two==0)break;
-		cout<<"구구:" << one <<" "<< two<<"\n";
 		int temp=two;
 		two=one%two;
 		one=temp;
