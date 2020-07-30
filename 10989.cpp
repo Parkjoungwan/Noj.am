@@ -2,7 +2,7 @@
 using namespace std;
 
 int N;
-int Num[10000]={0,};
+int Num[10001]={0,};
 void Show(){
 	for(int i=0;i<10000;i++){
 		for(int j=0;j<Num[i];j++){
