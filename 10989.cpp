@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
 
-int N;
-int Num[10001]={0,};
+long long N;
+long long  Num[10001]={0,};
 void Show(){
-	for(int i=0;i<10000;i++){
-		for(int j=0;j<Num[i];j++){
+	for(int i=0;i<10001;i++){
+		for(long long j=0;j<Num[i];j++){
 			cout << i<<"\n";
 		}
 	}
@@ -14,10 +14,9 @@ void Show(){
 void nojam10989(){
 	ios_base :: sync_with_stdio(false);
 	cin.tie(NULL);
-	cout.tie(NULL);
 	cin >> N;
-	for(int i=0;i<N;i++){
-		int num;
+	for(long long i=0;i<N;i++){
+		long long num;
 		cin >>num;
 		Num[num]++;
 	}
