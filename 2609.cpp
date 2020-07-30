@@ -3,18 +3,28 @@ using namespace std;
 
 int N,M;
 
+void gcd(){
+	if(N<M){
+		int swap;
+		swap=N;
+		N=M;
+		M=swap;
+	}
+	int one=N;
+	int two=M;
+	while(1){
+		if(one%two==0)break;
+		int temp=two;
+		two=one%two;
+		one=two;
+	}
+	cout<< two << "\n";
+	cout<< N*M/two<<"\n";
+}
+
 void nojam2609(){
 	cin >> N >> M;
-	int max=1;
-	for (int i=2;i<10001;i++){
-		if(N%i==0&&M%i==0){
-			N=N/i;
-			M=M/i;
-			max*=i;
-		}
-	}
-	int min=max*M*N;
-	cout << max <<"\n"<< min<<"\n";
+	gcd();
 }
 
 int main(){
