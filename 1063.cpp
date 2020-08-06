@@ -7,7 +7,7 @@ int low,low2;
 int king[2];
 int stone[2];
 
-boolean same(){
+bool same(){
 	if(row==row2 && low==low2){
 		return true;
 	}
@@ -23,12 +23,66 @@ void move(string mv){
 		if(same()){
 			if(low2<8){
 				low2++;
+			}else{
+				low--;
 			}
 		}
 		return;
 	}
-	if(mv==""){
+	if(mv=="L"){
+		if(low>1){
+			low--;
+		}
+		if(same()){
+			if(low2>1){
+				low2--;
+			}else{
+				low++;
+			}
+		}
+		return;
 		
+	}
+	if(mv=="B"){
+		if(row>1){
+			row--;
+		}
+		if(same()){
+			if(row2>1){
+				row2--;
+			}else{
+				row++;
+			}
+		}
+		return;
+	}
+	if(mv=="T"){
+		if(row<8){
+			row++;
+		}
+		if(same()){
+			if(row<8){
+				row2++;
+			}else{
+				row--;
+			}
+		}
+		return;
+	}
+	if(mv=="RT"){
+		if(row<8||low<8){
+			row++;
+			low++;
+		}
+		if(same()){
+			if(row<8||low<8){
+				row2++;
+				low2++;
+			}else{
+				row--;
+				low--;
+			}
+		}
 	}
 
 }
