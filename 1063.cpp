@@ -121,7 +121,7 @@ void move(string mv){
 				//cout << "밀림";
 				rrow2++;
 				low2--;
-				cout << rrow2 << low2 << endl;
+				//cout << rrow2 << low2 << endl;
 			}else{
 				rrow--;
 				low++;
