@@ -49,6 +49,7 @@ void move(string mv){
 				rrow2--;
 			}else{
 				rrow++;
+				//cout << "무효" << endl;
 				return;
 			}
 		}
@@ -111,13 +112,16 @@ void move(string mv){
 			rrow++;
 			low--;
 			//cout << "out: RB\n";
+			//cout << rrow << low << endl;
 		}else{
 			return;
 		}
 		if(same(rrow,rrow2)){
 			if(rrow2<8&&low2>1){
+				//cout << "밀림";
 				rrow2++;
 				low2--;
+				cout << rrow2 << low2 << endl;
 			}else{
 				rrow--;
 				low++;
@@ -158,7 +162,7 @@ void move(string mv){
 				low2--;
 			}else{
 				rrow++;
-				low--;
+				low++;
 				return;
 			}
 		}
