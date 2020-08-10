@@ -27,6 +27,10 @@ void nojam2609(){
 	gcd();
 }
 
-int main(){
+void testFun(){
+	cout << "test"<<endl;
+}
+
+int main(){<F8>:"
 	nojam2609();
 }
