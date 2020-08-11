@@ -1,17 +1,19 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 
 int N;
 int house[25][25];
 queue <pair<int,int>> q;
 int direction[4][2]={{0,-1},{1,0},{0,1},{-1,0}};
-
+vector <int> v;
 
 void BFS(){
 	pair <int,int> current;
 	int mx, my;
 	int count=0;
+	int num=0;
 	for(int i=0;i<N;i++){
 		for(int j=0;j<N;j++){
 			if(house[i][j]==1){
@@ -29,11 +31,16 @@ void BFS(){
 						}
 					}		
 				}
-				cout<< count <<endl;
+				v.push_back(count);
 				count=0;
+				num++;
 			}
 		}
-	}	
+	}
+	cout<<num<<"\n";
+	for(int i=0;i<v.size();i++){
+		cout << v[i] << "\n";
+	}
 }
 
 void nojam2667(){
