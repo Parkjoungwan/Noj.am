@@ -5,7 +5,7 @@
 using namespace std;
 
 int N;
-int house[25][25];
+int house[26][26];
 queue <pair<int,int>> q;
 int direction[4][2]={{0,-1},{1,0},{0,1},{-1,0}};
 vector <int> v;
