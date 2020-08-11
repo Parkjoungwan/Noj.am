@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 int N;
@@ -38,6 +39,7 @@ void BFS(){
 		}
 	}
 	cout<<num<<"\n";
+	sort(v.begin(),v.end());
 	for(int i=0;i<v.size();i++){
 		cout << v[i] << "\n";
 	}
