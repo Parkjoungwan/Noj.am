@@ -22,16 +22,17 @@ void BFS(){
 				while(!q.empty()){
 					current = q.front();
 					q.pop();
+					count++;
 					for(int k=0;k<4;k++){
 						mx = current.second+direction[k][0];
 						my = current.first+direction[k][1];
 						if(0<=mx&&mx<N&&0<=my&&my<N&&house[my][mx]==1){
 							q.push(make_pair(my,mx));
 							house[my][mx]=house[current.first][current.second]+1;
-							count++;
 						}
-					}		
+					}	
 				}
+				if(count !=1)count--;
 				v.push_back(count);
 				count=0;
 				num++;
