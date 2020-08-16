@@ -1,13 +1,14 @@
 #include <iostream>
 #include <queue>
+#include <vector>
 using namespace std;
 int N;
 int start, end;
 int Ncm;
-queue <pair<int,int>> que;
-int family[101][101];
+queue <pair<int,int>> que;//queue for bfs
+vector <vecter<int>> family;//double vector
 void BFS(){
-	q.push(make_pair())
+	q.push(make_pair())//start
 }
 
 void nojam2644(){
@@ -17,12 +18,11 @@ void nojam2644(){
 	for(int i=0;i<Ncm;i++){
 		int x,y;
 		cin >> x >> y;
-		family[x][y]=1;
-		family[y][x]=1;
+		//family insert
 	}
 }
 
 int main(){
-
+	nojam2644();
 }
 
