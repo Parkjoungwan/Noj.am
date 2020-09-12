@@ -11,13 +11,12 @@ int main()
     int len;
  
     cin >> eight;
- 
-    len = strlen(eight);
- 
-    printf("%s", first[eight[0] - 48]);
-    
-    for (int i = 1; i < len; i++)
-        printf("%s", table[eight[i] - 48]);
-    
-    return 0;
+	if(eight[0]-48==0){
+		printf("0\n");
+	}else{
+		len = strlen(eight);
+		printf("%s", first[eight[0] - 48]);
+		for (int i = 1; i < len; i++) printf("%s", table[eight[i] - 48]);
+		return 0;
+	}
 }
