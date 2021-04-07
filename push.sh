@@ -1,10 +1,12 @@
 #!/bin/bash
 
+ echo -e "\033[0;32mUpdates to GitHub...\033[0m"
+
 # Add changes to git
 git add .
 
 #Commit changes.
-msg="upload 'date'[0"
+msg="upload 'date'"
 if [$# -eq 1]
 	then msg="$1"
 fi
