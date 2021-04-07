@@ -4,7 +4,7 @@
 git add .
 
 #Commit changes.
-msg="upload 'date'"
+msg="upload 'date'[0"
 if [$# -eq 1]
 	then msg="$1"
 fi
