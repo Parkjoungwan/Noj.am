@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -ed "\033starting upload...\033[0m"
+echo -ed "\033mstarting upload...\033[0m"
 
 # Add changes to git
 git add .
