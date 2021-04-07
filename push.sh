@@ -1,7 +1,5 @@
 #!/bin/bash
 
-echo -ed "\033mstarting upload...\033m"
-
 # Add changes to git
 git add .
 
