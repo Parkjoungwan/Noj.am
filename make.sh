@@ -9,6 +9,7 @@ if test -d "./$num";then
 	echo "dir already exist"
 else
 	mkdir $num
+	echo "make new dir"
 	# cd dir
 	cd $num
 
