@@ -1,37 +1,61 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
-#include <cmath>
+#include <queue>
+#include <cstring>
 
 using namespace std;
+
+vector<int> tree[51];
+int visit[51];
+int root, res;
+
+void bfs(int del)
+{
+	memset(visit, 0, sizeof(visit));
+	queue<int> q;
+	if (root == del) return;
+	q.push(root);
+	visit[root] = 1;
+
+	while (!q.empty())
+	{
+		int x = q.front();
+		q.pop();
+
+		for (int i = 0; i < tree[x].size(); i++)
+		{
+			int nx = tree[x][i];
+			if (nx == del || visit[nx] != 0)continue;
+			q.push(nx);
+			visit[x]++;
+			visit[nx] = 1;
+		}
+	}
+}
 
 int main()
 {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
-	int num[50];
 	int n;
-	int i, j;
-	int k;
-
-	i = 0;
 	cin >> n;
-	while (i < n)
-		cin >> num[i++];
-	cin >> k;
-	i = 0;
-	num[k] = -1;
-	while (i < n)
+	int tmp;
+	for (int i = 0; i < n; i++)
 	{
-		if (num[i] == k)
-			num[i] = -1;
-		i++;
+		cin >> tmp;
+		if (tmp == -1) root = i;
+		else tree[tmp].push_back(i);
 	}
-	i = n;
-	while (--i)
-		num[num[i]] = -1;
-	i = 0;
-	while (i < n)
-		cout << num[i++] << " ";
+
+	int del;
+	cin >> del;
+	bfs(del);
+
+	res = 0;
+	for (int i = 0; i < n; i++)
+		if (visit[i] == 1)
+			res++;
+	cout << res;
 }

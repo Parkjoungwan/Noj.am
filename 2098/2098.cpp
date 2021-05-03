@@ -10,12 +10,12 @@ using namespace std;
 int n;
 int width[16][16];
 int min(int a, int b){ return a < b ? a : b;}
-int d[1 << 16][16] = {0, };
+int d[1 << 16][16] = {0 };
 
 int ft_dfs(int visit, int now)
 {
 	visit |= (1 << now);
-	if (visit == (1 << now) - 1)
+	if (visit == (1 << n) - 1)
 	{
 		if (width[now][0] > 0)
 		{
